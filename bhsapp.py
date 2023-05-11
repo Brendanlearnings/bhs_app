@@ -18,8 +18,9 @@ def random_id_gen():
     random.shuffle(digits)
     return int(''.join(digits))
 
-user_id = random_id_gen()
-st.session_state['user'] = user_id
+if 'user' not in st.session_state:
+    st.session_state.key = f'{user_id}'
+
 def details():
     st.title('Class of 2013 Reunion')
     st.write()
