@@ -49,12 +49,15 @@ def merch():
     st.selectbox('Size',sizes)
 
 def events():
+    st.title('Up and coming events')
+    st.write('Please select what events you would like to attend')
 
 # Set up the directory for pages in app
 pages = {
     "Infromation": details,
     "Contact details": contact_deets,
     "Merchandise": merch,
+    "Events": events
     
 }
 
