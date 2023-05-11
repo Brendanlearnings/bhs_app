@@ -9,9 +9,7 @@ import random
 from datetime import datetime
 #################################################
 
-if 'user' not in st.session_state:
-    st.session_state.user = random_id_gen()
-    st.session_state.timestamp = datetime.now()
+
 
 def init_connection():
     return snowflake.connector.connect(
@@ -22,6 +20,10 @@ def random_id_gen():
     digits = [str(random.randint(0, 9)) for _ in range(8)]
     random.shuffle(digits)
     return int(''.join(digits))
+
+if 'user' not in st.session_state:
+    st.session_state.user = random_id_gen()
+    st.session_state.timestamp = datetime.now()
 
 def ref_num_gen():
     digits = [str(random.randint(0, 4)) for _ in range(8)]
@@ -84,8 +86,10 @@ def events():
         st.session_state.events = events
 
 def checkout():
+    st.session_state.ref_num = f'REF{ref_num_gen()}'
     st.title('Payment information')
     st.write('Please find the total for your selections below, along with the relevant payment information')
+    st.dataframe(st.session_state)
 
 # Set up the directory for pages in app
 pages = {
