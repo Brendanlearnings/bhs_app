@@ -60,10 +60,11 @@ def merch():
 
 def events():
     st.title('Up and coming events')
-    st.write('Please select what events you would like to attend')
-    st.checkbox('Big Brag',
-                'Small Brag',
-                'U18A Rugby'
+
+    st.multiselect('Please select what events you would like to attend''Big Brag',
+                ['Small Brag',
+                'U18A Rugby',
+                'Big Brag']
                 )
 
 # Set up the directory for pages in app
