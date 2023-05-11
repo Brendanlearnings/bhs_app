@@ -38,6 +38,7 @@ def contact_deets():
     surname = st.text_input('Surname')
     phone = st.text_input('Phone Number')
     address = st.text_input('Address')
+    st.write(st.session_state)
 
 
 def merch():
@@ -54,6 +55,7 @@ def merch():
         'XXL':400
     }
     st.selectbox('Size',sizes)
+    st.write(st.session_state)
 
 def events():
     st.title('Up and coming events')
