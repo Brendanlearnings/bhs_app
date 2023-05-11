@@ -9,6 +9,10 @@ import random
 from datetime import datetime
 #################################################
 
+if 'user' not in st.session_state:
+    st.session_state.user = random_id_gen()
+    st.session_state.timestamp = datetime.now()
+
 def init_connection():
     return snowflake.connector.connect(
         **st.secrets["snowflake"], client_session_keep_alive=True
@@ -19,9 +23,10 @@ def random_id_gen():
     random.shuffle(digits)
     return int(''.join(digits))
 
-if 'user' not in st.session_state:
-    st.session_state.user = random_id_gen()
-    st.session_state.timestamp = datetime.now()
+def ref_num_gen():
+    digits = [str(random.randint(0, 4)) for _ in range(8)]
+    random.shuffle(digits)
+    return int(''.join(digits))
 
 def details():
     st.title('Class of 2013 Reunion')
@@ -43,6 +48,13 @@ def contact_deets():
     address = st.text_input('Address')
     st.write(st.session_state)
 
+    if st.button('Submit'):
+        st.session_state.name = name
+        st.session_state.surname = surname
+        st.session_state.phone = phone
+        st.session_state.address = address
+
+    
 
 def merch():
     st.title('Merchandise')
@@ -57,18 +69,27 @@ def merch():
         'XXL':350,
         'XXL':400
     }
-    st.selectbox('Size',sizes)
+    size_select = st.selectbox('Size',sizes)
     st.write(st.session_state)
+    if st.button('Submit'):
+        st.session_state.size_select = size_select
+
 
 def events():
     st.title('Up and coming events')
 
-    st.multiselect('Please select what events you would like to attend''Big Brag',
+    events = st.multiselect('Please select what events you would like to attend''Big Brag',
                 ['Small Brag',
                 'U18A Rugby',
                 'Big Brag']
                 )
+    if st.button('Submit'):
+        st.session_state.events = events
 
+def checkout():
+    st.title('Payment information')
+    st.write('Please find the total for your selections below, along with the relevant payment information')
+    st.dataframe(st.session_state)
 # Set up the directory for pages in app
 pages = {
     "Infromation": details,
