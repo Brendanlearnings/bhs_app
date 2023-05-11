@@ -14,10 +14,9 @@ def init_connection():
 
 
 def details():
-    st.write(st.__version__)
     st.title('Class of 2013 Reunion')
     st.write()
-    st.write(st.session_state)
+    st.write(st.experimental_user)
     st.write("""Calling all Matrix Class of 2013 graduates from Paarl Boys High! 
     Get ready to embark on a thrilling journey down memory lane as we celebrate our monumental 10 year reunion. The anticipation is building, and the excitement is contagious! On the 5th of August 2023, our beloved school rugby field will transform into a pulsating hub of nostalgia and camaraderie. 
     Picture yourself surrounded by familiar faces, reliving those glorious moments that shaped our youth. The air will be filled with thunderous cheers, the echoes of our triumphs, and the unbreakable bonds of friendship. This is your chance to reconnect with old teammates, share stories of triumphs and challenges, and reignite the spirit that once burned so bright within us. Let's come together and create an unforgettable experience, where the spirit of the Matrix Class of 2013 shines once again. 
@@ -48,6 +47,9 @@ def merch():
         'XXL':400
     }
     st.selectbox('Size',sizes)
+
+def events():
+
 # Set up the directory for pages in app
 pages = {
     "Infromation": details,
