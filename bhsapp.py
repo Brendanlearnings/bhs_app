@@ -92,8 +92,7 @@ def checkout():
     st.title('Payment information')
     st.write('Please find the total for your selections below, along with the relevant payment information')
     st.write(st.session_state)
-    data = pd.DataFrame.from_dict(st.session_state)
-    st.dataframe(data)
+    
 
 # Set up the directory for pages in app
 pages = {
