@@ -1,8 +1,7 @@
 #################### IMPORTS ####################
 import streamlit as st
 import streamlit.components.v1 as components
-# from streamlit.script_run_context import add_script_run_ctx
-# from streamlit.report_thread import get_report_ctx
+import pandas as pd
 from datetime import date
 import snowflake.connector
 import random
@@ -93,7 +92,8 @@ def checkout():
     st.title('Payment information')
     st.write('Please find the total for your selections below, along with the relevant payment information')
     st.write(st.session_state)
-    st.dataframe(st.session_state)
+    data = pd.DataFrame.from_dict(st.session_state)
+    st.dataframe(data)
 
 # Set up the directory for pages in app
 pages = {
