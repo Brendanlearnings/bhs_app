@@ -31,7 +31,6 @@ def ref_num_gen():
 def details():
     st.title('Class of 2013 Reunion')
     st.write()
-    st.write(st.session_state)
     st.write('Calling all Matrix Class of 2013 graduates from Paarl Boys High!')
     st.write("Get ready to embark on a thrilling journey down memory lane as we celebrate our monumental 10 year reunion. The anticipation is building, and the excitement is contagious! On the 5th of August 2023, our beloved school rugby field will transform into a pulsating hub of nostalgia and camaraderie.")
     st.write("Picture yourself surrounded by familiar faces, reliving those glorious moments that shaped our youth. The air will be filled with thunderous cheers, the echoes of our triumphs, and the unbreakable bonds of friendship. This is your chance to reconnect with old teammates, share stories of triumphs and challenges, and reignite the spirit that once burned so bright within us. Let's come together and create an unforgettable experience, where the spirit of the Matrix Class of 2013 shines once again.")
@@ -46,7 +45,6 @@ def contact_deets():
     surname = st.text_input('Surname')
     phone = st.text_input('Phone Number')
     address = st.text_input('Address')
-    st.write(st.session_state)
 
     if st.button('Submit'):
         st.session_state.name = name
@@ -70,7 +68,6 @@ def merch():
         'XXL':400
     }
     size_select = st.selectbox('Size',sizes)
-    st.write(st.session_state)
     if st.button('Submit'):
         st.session_state.size_select = size_select
 
@@ -89,14 +86,14 @@ def events():
 def checkout():
     st.title('Payment information')
     st.write('Please find the total for your selections below, along with the relevant payment information')
-    st.dataframe(st.session_state)
+
 # Set up the directory for pages in app
 pages = {
     "Infromation": details,
     "Contact details": contact_deets,
     "Merchandise": merch,
     "Events": events
-    
+    'Checkout': checkout()
 }
 
 
