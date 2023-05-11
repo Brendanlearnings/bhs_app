@@ -25,7 +25,7 @@ def merch():
 # Set up the directory for pages in app
 pages = {
     "Infromation": details,
-    "Merchandise": merch
+    "Merchandise": merch,
     
 }
 
