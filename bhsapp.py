@@ -5,6 +5,7 @@ import streamlit.components.v1 as components
 # from streamlit.report_thread import get_report_ctx
 from datetime import date
 import snowflake.connector
+import random
 #################################################
 
 def init_connection():
@@ -12,11 +13,15 @@ def init_connection():
         **st.secrets["snowflake"], client_session_keep_alive=True
     )
 
+def random_id_gen():
+    digits = [str(random.randint(0, 9)) for _ in range(8)]
+    random.shuffle(digits)
+    return int(''.join(digits))
 
 def details():
     st.title('Class of 2013 Reunion')
     st.write()
-    st.write(st.experimental_user)
+    st.write(st.experimental_user[random_id_gen()])
     st.write("""Calling all Matrix Class of 2013 graduates from Paarl Boys High! 
     Get ready to embark on a thrilling journey down memory lane as we celebrate our monumental 10 year reunion. The anticipation is building, and the excitement is contagious! On the 5th of August 2023, our beloved school rugby field will transform into a pulsating hub of nostalgia and camaraderie. 
     Picture yourself surrounded by familiar faces, reliving those glorious moments that shaped our youth. The air will be filled with thunderous cheers, the echoes of our triumphs, and the unbreakable bonds of friendship. This is your chance to reconnect with old teammates, share stories of triumphs and challenges, and reignite the spirit that once burned so bright within us. Let's come together and create an unforgettable experience, where the spirit of the Matrix Class of 2013 shines once again. 
