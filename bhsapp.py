@@ -19,7 +19,7 @@ def random_id_gen():
     return int(''.join(digits))
 
 user_id = random_id_gen()
-st.session['user'] = user_id
+st.session_state['user'] = user_id
 def details():
     st.title('Class of 2013 Reunion')
     st.write()
