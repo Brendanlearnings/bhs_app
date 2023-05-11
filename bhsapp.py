@@ -1,7 +1,8 @@
 #################### IMPORTS ####################
 import streamlit as st
 import streamlit.components.v1 as components
-#from streamlit.report_thread import get_report_ctx
+from streamlit.script_run_context import add_script_run_ctx
+# from streamlit.report_thread import get_report_ctx
 from datetime import date
 import snowflake.connector
 #################################################
@@ -16,7 +17,7 @@ def init_connection():
 def _get_session():
     import streamlit.report_thread as ReportThread
     from streamlit.server.server import Server
-    session_id = get_report_ctx().session_id
+    session_id = add_script_run_ctx().session_id
     session_info = Server.get_current()._get_session_info(session_id)
     if session_info is None:
         raise RuntimeError("Couldn't get your Streamlit Session object.")
