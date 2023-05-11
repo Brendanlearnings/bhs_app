@@ -13,16 +13,16 @@ def init_connection():
 
 
 
-# def _get_session():
-#     import streamlit.report_thread as ReportThread
-#     from streamlit.server.server import Server
-#     session_id = get_report_ctx().session_id
-#     session_info = Server.get_current()._get_session_info(session_id)
-#     if session_info is None:
-#         raise RuntimeError("Couldn't get your Streamlit Session object.")
-#     return session_info.session
+def _get_session():
+    import streamlit.report_thread as ReportThread
+    from streamlit.server.server import Server
+    session_id = get_report_ctx().session_id
+    session_info = Server.get_current()._get_session_info(session_id)
+    if session_info is None:
+        raise RuntimeError("Couldn't get your Streamlit Session object.")
+    return session_info.session
 
-# user_session = _get_session()
+user_session = _get_session()
 
 def details():
     st.write(st.__version__)
@@ -33,7 +33,7 @@ def details():
     Picture yourself surrounded by familiar faces, reliving those glorious moments that shaped our youth. The air will be filled with thunderous cheers, the echoes of our triumphs, and the unbreakable bonds of friendship. This is your chance to reconnect with old teammates, share stories of triumphs and challenges, and reignite the spirit that once burned so bright within us. Let's come together and create an unforgettable experience, where the spirit of the Matrix Class of 2013 shines once again. 
     Dust off your rugby jerseys, gather your memories, and prepare to be swept away by the electrifying energy that only a reunion of this magnitude can bring. The countdown has begun, and the stage is set. Brace yourselves for an extraordinary celebration, where we honor our legacy, relish our accomplishments, and create new memories that will last a lifetime. The Matrix Class of 2013 reunion is our moment to shine – let's make it legendary!""")
     components.html('''<iframe width="1128" height="635" src="https://www.youtube.com/embed/1oeaRq9-yBc" title="Paarl Boys High School" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>''', height=650, width=600)
-    #st.write(f'{user_session}')
+    st.write(f'{user_session}')
 
 def contact_deets():
     st.title('We require your information')
@@ -42,7 +42,7 @@ def contact_deets():
     surname = st.text_input('Surname')
     phone = st.text_input('Phone Number')
     address = st.text_input('Address')
-    # st.write(f'{user_session}')
+    st.write(f'{user_session}')
 
 def merch():
     st.title('Merchandise')
