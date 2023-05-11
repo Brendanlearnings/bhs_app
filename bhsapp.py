@@ -19,7 +19,7 @@ def random_id_gen():
     return int(''.join(digits))
 
 if 'user' not in st.session_state:
-    st.session_state.key = f'{user_id}'
+    st.session_state.user = f'{user_id}'
 
 def details():
     st.title('Class of 2013 Reunion')
