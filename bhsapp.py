@@ -6,6 +6,7 @@ import streamlit.components.v1 as components
 from datetime import date
 import snowflake.connector
 import random
+from datetime import datetime
 #################################################
 
 def init_connection():
@@ -20,6 +21,7 @@ def random_id_gen():
 
 if 'user' not in st.session_state:
     st.session_state.user = random_id_gen()
+    st.session_state.timestamp = datetime.now()
 
 def details():
     st.title('Class of 2013 Reunion')
