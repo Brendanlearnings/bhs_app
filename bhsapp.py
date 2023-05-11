@@ -53,6 +53,7 @@ def contact_deets():
         st.session_state.surname = surname
         st.session_state.phone = phone
         st.session_state.address = address
+        st.write('Successfully captured your data!')
 
     
 
@@ -72,6 +73,7 @@ def merch():
     size_select = st.selectbox('Size',sizes)
     if st.button('Submit'):
         st.session_state.size_select = size_select
+        st.write('Successfully captured your data!')
 
 
 def events():
@@ -84,11 +86,13 @@ def events():
                 )
     if st.button('Submit'):
         st.session_state.events = events
+        st.write('Successfully captured your data!')
 
 def checkout():
     st.session_state.ref_num = f'REF{ref_num_gen()}'
     st.title('Payment information')
     st.write('Please find the total for your selections below, along with the relevant payment information')
+    st.write(st.session_state)
     st.dataframe(st.session_state)
 
 # Set up the directory for pages in app
