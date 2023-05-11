@@ -93,7 +93,7 @@ pages = {
     "Contact details": contact_deets,
     "Merchandise": merch,
     "Events": events
-    'Checkout': checkout()
+    "Checkout": checkout
 }
 
 
