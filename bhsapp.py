@@ -38,7 +38,8 @@ def random_id_gen():
 
 if 'user' not in st.session_state:
     st.session_state.user = random_id_gen()
-    st.session_state.timestamp = datetime.now()
+    now = datetime.now()
+    st.session_state.timestamp = now.strftime('%Y-%m-%d %H:%M:%S.%f %z')
 
 def ref_num_gen():
     digits = [str(random.randint(0, 9)) for _ in range(5)]
