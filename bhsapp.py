@@ -15,6 +15,22 @@ def init_connection():
         **st.secrets["snowflake"], client_session_keep_alive=True
     )
 
+def run_query(query,expectResult=1):
+    conn = init_connection()
+    with conn.cursor() as cur:
+        cur.execute(query)
+        
+        if expectResult == 2:
+            # Get the column headers
+            headers = [desc[0] for desc in cur.description]
+            results = cur.fetchall()
+            df = pd.DataFrame(results, columns=headers)
+            return df
+        
+        if expectResult != 0:
+            return cur.fetchall()
+        cur.close()
+
 def random_id_gen():
     digits = [str(random.randint(0, 9)) for _ in range(8)]
     random.shuffle(digits)
@@ -25,7 +41,7 @@ if 'user' not in st.session_state:
     st.session_state.timestamp = datetime.now()
 
 def ref_num_gen():
-    digits = [str(random.randint(0, 4)) for _ in range(8)]
+    digits = [str(random.randint(0, 9)) for _ in range(5)]
     random.shuffle(digits)
     return int(''.join(digits))
 
@@ -48,10 +64,8 @@ def contact_deets():
     address = st.text_input('Address')
 
     if st.button('Submit'):
-        st.session_state.name = name
-        st.session_state.surname = surname
-        st.session_state.phone = phone
-        st.session_state.address = address
+        st.session_state.name, st.session_state.surname, st.session_state.phone, st.session_state.address = name, surname, phone, address
+        run_query(f"INSERT INTO BHSAPP.APPDATA.USER_DETAILS (USER_ID,NAME,SURNAME,PHONE,ADDRESS,TMSTMP) VALUES ({st.session_state.user},{st.session_state.name},{st.session_state.surname},{st.session_state.phone},{st.session_state.address},{st.session_state.timestamp})")
         st.write('Successfully captured your data!')
 
     
