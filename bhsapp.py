@@ -103,13 +103,13 @@ def events():
     events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
     if st.button('Submit'):
         st.session_state.event = events
-        if (item in 'Friday Big Brag (Stadsaal)' for item in st.session_state.event) == True:
+        if ('Friday Big Brag (Stadsaal)' in item for item in st.session_state.event) == True:
                 member = st.selectbox('Are you a paid up OBU Member?',choices)
                 st.session_state.member = member
-        if (item in 'Interschools Rugby' for item in st.session_state.event) == True:
+        if ('Interschools Rugby' in item for item in st.session_state.event) == True:
                 ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
                 st.session_state.ticket_type = ticket_type
-        if (item in '10 Year Reunion Dinner' for item in st.session_state.event) == True:
+        if ('10 Year Reunion Dinner' in item for item in st.session_state.event) == True:
                 reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
                 st.session_state.reunion = reunion
 
