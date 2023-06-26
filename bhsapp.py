@@ -110,11 +110,11 @@ def choices():
         st.write('No need for any additional questions, thank you!')
 
     if st.button('Submit'):
-        if member is not None:
+        if member:
             st.session_state.member = member
-        if ticket_type is not None:
+        if ticket_type:
             st.session_state.ticket_type = ticket_type
-        if reunion is not None:
+        if reunion:
             st.session_state.reunion = reunion
         st.write(st.session_state)
         # run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT_, ADDITION, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{member}','{datetime.now()}')")
