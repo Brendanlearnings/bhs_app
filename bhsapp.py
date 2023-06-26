@@ -1,5 +1,6 @@
 #################### IMPORTS ####################
 import streamlit as st
+from streamlit_extras.switch_page_button import switch_page
 import streamlit.components.v1 as components
 import pandas as pd
 from datetime import date
@@ -113,8 +114,8 @@ def events():
     events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
     if st.button('Submit'):
         st.session_state.event = events
-    if st.session_state.event is not None:
-        choices()
+        switch_page(choices)
+        # choices()
     
 
     
