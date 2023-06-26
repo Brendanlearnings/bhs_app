@@ -150,9 +150,9 @@ def checkout():
     order = run_query(f"SELECT ITEM, PRICE FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
     st.dataframe(order)
     total = run_query(f"SELECT SUM(PRICE) FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'")
-    st.header(f"Your total is: R{total[0][0]}")
+    st.subheader(f"Your total is: R{total[0][0]}")
 
-    st.subheader('Please see the below account details for payment, NB - use your name as the reference for the payment to help Warne out!')
+    st.write('Please see the below account details for payment, NB - use your name as the reference for the payment to help Warne out!')
     st.write('Account Name: HJS OUDSTUDENTE UNIE')
     st.write('Bank: ABSA, PAARL')
     st.write('Account Number: 9350129123')
