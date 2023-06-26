@@ -114,7 +114,7 @@ def events():
     events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
     if st.button('Submit'):
         st.session_state.event = events
-        switch_page(choices)
+        switch_page('Additional')
         # choices()
     
 
@@ -155,6 +155,7 @@ pages = {
     "Contact details": contact_deets,
     "Merchandise": merch,
     "Events": events,
+    "Additional": choices,
     "Checkout": checkout
 }
 
