@@ -110,16 +110,11 @@ def choices():
 
 def events():
     st.title('Up and coming events')
-
-
     events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
-    
     if st.button('Submit'):
-        # st.write(st.session_state.event)
-        # st.write(type(st.session_state.event))
-        
         st.session_state.event = events
-    choices()
+    if st.session_state.event is not None:
+        choices()
     
 
     
