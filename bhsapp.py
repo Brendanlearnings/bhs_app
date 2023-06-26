@@ -145,7 +145,7 @@ def events():
 def checkout():
     st.title('Payment information')
     st.write('Please find the total for your selections below, along with the relevant payment information')
-    total = run_query(f"SELECT * FROM BHSAPP.APPDATA.CHECKOUT WHERE USER_ID = {st.session_state.user}",2)
+    total = run_query(f"SELECT * FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
     st.dataframe(total)
     
 
