@@ -94,12 +94,24 @@ def merch():
         run_query(f"INSERT INTO BHSAPP.APPDATA.MERCHANDISE (USER_ID, JERSEY,SHELL,PUFFER,TMSTMP) VALUES ({st.session_state.user},'{st.session_state.size_select}','{st.session_state.soft_shell}','{st.session_state.puffer}','{datetime.now()}')")
         st.write('Successfully captured your data!')
 
+def choices():
+    choices = ['No','Yes']
+    inter_tickets = ['Walk-in','Stand']
+    for i in st.session_state.event:
+        if 'Friday Big Brag (Stadsaal)' in i:
+            member = st.selectbox('Are you a paid up OBU Member?',choices)
+
+        if 'Interschools Rugby' in i:
+            ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
+
+        if '10 Year Reunion Dinner' in i:
+            reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
+
 
 def events():
     st.title('Up and coming events')
 
-    choices = ['No','Yes']
-    inter_tickets = ['Walk-in','Stand']
+
     events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
     
     if st.button('Submit'):
@@ -107,17 +119,12 @@ def events():
         # st.write(type(st.session_state.event))
         
         st.session_state.event = events
+        choices()
     
-    if len(st.session_state.event) != 0:
-        for i in st.session_state.event:
-            if 'Friday Big Brag (Stadsaal)' in i:
-                member = st.selectbox('Are you a paid up OBU Member?',choices)
-            
-            if 'Interschools Rugby' in i:
-                ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
-            
-            if '10 Year Reunion Dinner' in i:
-                reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
+
+    
+    # if len(st.session_state.event) != 0:
+    
             
 
         # if st.button('Done'):
