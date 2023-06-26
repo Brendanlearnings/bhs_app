@@ -98,14 +98,23 @@ def merch():
 def events():
     st.title('Up and coming events')
 
-    events = st.multiselect('Please select what events you would like to attend''Big Brag',
-                ['Small Brag',
-                'U18A Rugby',
-                'Big Brag']
-                )
-    if st.button('Submit'):
-        st.session_state.events = events
-        st.write('Successfully captured your data!')
+    choices = ['Yes','No']
+    inter_tickets = ['Walk-in','Stand']
+    brag = st.selectbox('Friday Big Brag (Stadsaal)', choices)
+    if brag:
+        st.selectbox('Are you a paid up OBU Member?',choices)
+    inter = st.selectbox('Interschools Rugby', choices)
+    if inter:
+        st.selectbox('Ticket Type', inter_tickets)
+    reunion = st.selectbox('10 Year Reunion Dinner', choices)
+    if reunion:
+        st.selectbox('Is your partner attending?')
+            
+
+        
+    # if st.button('Submit'):
+    #     st.session_state.events = events
+    #     st.write('Successfully captured your data!')
 
 def checkout():
     st.session_state.ref_num = f'REF{ref_num_gen()}'
