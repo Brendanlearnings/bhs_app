@@ -145,8 +145,10 @@ def events():
 def checkout():
     st.title('Payment information')
     st.write('Please find the total for your selections below, along with the relevant payment information')
-    total = run_query(f"SELECT * FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
-    st.dataframe(total)
+    order = run_query(f"SELECT ITEM, PRICE FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
+    st.dataframe(order)
+    total = run_query(f"SELECT SUM(PRICE) FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'")
+    st.write(total)
     
 
 # Set up the directory for pages in app
