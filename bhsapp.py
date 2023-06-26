@@ -100,21 +100,21 @@ def events():
 
     choices = ['Yes','No']
     inter_tickets = ['Walk-in','Stand']
-    brag = st.selectbox('Friday Big Brag (Stadsaal)', choices)
-    if brag == 'Yes':
-        st.selectbox('Are you a paid up OBU Member?',choices)
-    inter = st.selectbox('Interschools Rugby', choices)
-    if inter == 'Yes':
-        st.selectbox('Ticket Type', inter_tickets)
-    reunion = st.selectbox('10 Year Reunion Dinner', choices)
-    if reunion == 'Yes':
-        st.selectbox('Is your partner attending?',choices)
+    events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
+    if st.button('Submit'):
+        
+        for i in events:
+            if i == 'Friday Big Brag (Stadsaal)':
+                st.selectbox('Are you a paid up OBU Member?',choices)
+            if i == 'Interschools Rugby':
+                st.selectbox('Interschools Rugby ticket type', inter_tickets)
+            if i == '10 Year Reunion Dinner':
+                st.selectbox('Is your partner attending the reunion dinner?', choices)
+        
             
 
         
-    # if st.button('Submit'):
-    #     st.session_state.events = events
-    #     st.write('Successfully captured your data!')
+    
 
 def checkout():
     st.session_state.ref_num = f'REF{ref_num_gen()}'
