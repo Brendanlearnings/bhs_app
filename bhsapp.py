@@ -146,11 +146,18 @@ def events():
 
 def checkout():
     st.title('Payment information')
-    st.write('Please find the total for your selections below, along with the relevant payment information')
+    st.write('Please find the summary for your selections below:')
     order = run_query(f"SELECT ITEM, PRICE FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
     st.dataframe(order)
     total = run_query(f"SELECT SUM(PRICE) FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'")
-    st.write(f"Your total is: R{total[0][0]}")
+    st.header(f"Your total is: R{total[0][0]}")
+
+    st.subheader('Please see the below account details for payment, NB - use your name as the reference for the payment to help Warne out!')
+    st.write('Account Name: HJS OUDSTUDENTE UNIE')
+    st.write('Bank: ABSA, PAARL')
+    st.write('Account Number: 9350129123')
+    st.write('Ref: (Name and Surname)')
+
     
 
 # Set up the directory for pages in app
