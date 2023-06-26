@@ -14,10 +14,10 @@ def init_connection():
         **st.secrets["snowflake"], client_session_keep_alive=True
     )
 
-def display_pdf(file):
-    with open(file,'rb') as file:
-        pdf = base64.b64encode(file.read()).decode('utf-8')
-    return pdf
+# def display_pdf(file):
+#     with open(file,'rb') as file:
+#         pdf = base64.b64encode(file.read()).decode('utf-8')
+#     return pdf
 
 
 def run_query(query,expectResult=1):
@@ -76,7 +76,7 @@ def contact_deets():
 
     if st.button('Submit'):
         st.session_state.name, st.session_state.surname, st.session_state.phone, st.session_state.address = name, surname, phone, address
-        run_query(f"INSERT INTO BHSAPP.APPDATA.USER_DETAILS (USER_ID,NAME,SURNAME,PHONE,ADDRESS,TMSTMP) VALUES ({st.session_state.user},'{st.session_state.name}','{st.session_state.surname}','{st.session_state.phone}','{st.session_state.address}','2023-05-01')")
+        run_query(f"INSERT INTO BHSAPP.APPDATA.USER_DETAILS (USER_ID,NAME,SURNAME,PHONE,ADDRESS,TMSTMP) VALUES ({st.session_state.user},'{st.session_state.name}','{st.session_state.surname}','{st.session_state.phone}','{st.session_state.address}','{datetime.now()}')")
         st.write('Successfully captured your data!')
 
     
@@ -90,8 +90,8 @@ def merch():
     soft_shell = st.selectbox('Soft Shell',sizes)
     puffer_jack = st.selectbox('Puffer Jacket',sizes)
     if st.button('Submit'):
-        st.session_state.size_select = size_select
-        # run_query(f"INSERT INTO BHSAPP.APPDATA.USER_DETAILS (USER_ID,NAME,SURNAME,PHONE,ADDRESS,TMSTMP) VALUES ({st.session_state.user},'{st.session_state.name}','{st.session_state.surname}','{st.session_state.phone}','{st.session_state.address}','{datetime.now()}')")
+        st.session_state.size_select, st.session_state.soft_shell, st.session_state.puffer = size_select, soft_shell, puffer_jack
+        run_query(f"INSERT INTO BHSAPP.APPDATA.MERCHANDISE (USER_ID, JERSEY,SHELL,PUFFER,TMSTMP) VALUES ({st.session_state.user},{st.session_state.size_select},{st.session_state.soft_shell},{st.session_state.soft_shell},{st.session_state.puffer})")
         st.write('Successfully captured your data!')
 
 
