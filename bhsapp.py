@@ -60,7 +60,7 @@ def details():
     st.write("We have planned various activities  to make this reunion truly special. Whether you were a sports star, a member of the debate team, a talented musician, or simply a student who enjoyed the camaraderie of our incredible class, there will be something for everyone.")
     st.write("We are eagerly looking forward to seeing you and reconnecting with our class. Let's gather once again to celebrate the friendships and experiences that shaped our lives at Paarl Boys’ High. Together, let's make this reunion one to remember.")
     pdf = display_pdf('HJS 10 Jaar Reunie Final.pdf')
-    components.html(f'<iframe src="data:application/pdf;base64,{pdf}" width="700" height="1000" type="application/pdf"></iframe>')
+    components.html(f'<iframe src="https://github.com/Brendanlearnings/bhs_app/blob/81163439d08404d687ad04f0771d9eadbf0c9915/HJS%2010%20Jaar%20Reunie%20Final.pdf" width="700" height="1000" type="application/pdf"></iframe>')
     # components.html('''<iframe width="650" height="650" src="https://www.youtube.com/embed/1oeaRq9-yBc" title="Paarl Boys High School" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>''', height=650, width=650)
 
 
