@@ -59,7 +59,7 @@ def details():
     st.write("It's hard to believe that 10 years have passed since we walked the halls of Paarl Boys’ High, but here we are! It's time to gather together and celebrate a decade of memories, accomplishments, and friendships at our long-awaited 10-year reunion.")
     st.write("We have planned various activities  to make this reunion truly special. Whether you were a sports star, a member of the debate team, a talented musician, or simply a student who enjoyed the camaraderie of our incredible class, there will be something for everyone.")
     st.write("We are eagerly looking forward to seeing you and reconnecting with our class. Let's gather once again to celebrate the friendships and experiences that shaped our lives at Paarl Boys’ High. Together, let's make this reunion one to remember.")
-    components.html('<iframe src="https://github.com/Brendanlearnings/bhs_app/HJS 10 Jaar Reunie Final.pdf" width="700" height="1000"</iframe>')
+    components.html('<iframe src="https://github.com/Brendanlearnings/bhs_app/HJS 10 Jaar Reunie Final.pdf" width="700" height="1000" type="application/pdf"</iframe>')
     # components.html('''<iframe width="650" height="650" src="https://www.youtube.com/embed/1oeaRq9-yBc" title="Paarl Boys High School" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>''', height=650, width=650)
 
 
