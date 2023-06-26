@@ -91,7 +91,7 @@ def merch():
     puffer_jack = st.selectbox('Puffer Jacket',sizes)
     if st.button('Submit'):
         st.session_state.size_select, st.session_state.soft_shell, st.session_state.puffer = size_select, soft_shell, puffer_jack
-        run_query(f"INSERT INTO BHSAPP.APPDATA.MERCHANDISE (USER_ID, JERSEY,SHELL,PUFFER,TMSTMP) VALUES ({st.session_state.user},'{st.session_state.size_select}','{st.session_state.soft_shell}','{st.session_state.soft_shell}','{st.session_state.puffer}')")
+        run_query(f"INSERT INTO BHSAPP.APPDATA.MERCHANDISE (USER_ID, JERSEY,SHELL,PUFFER,TMSTMP) VALUES ({st.session_state.user},'{st.session_state.size_select}','{st.session_state.soft_shell}','{st.session_state.soft_shell}','{st.session_state.puffer}','{datetime.now()}')")
         st.write('Successfully captured your data!')
 
 
