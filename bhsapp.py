@@ -80,12 +80,12 @@ def contact_deets():
         run_query(f"INSERT INTO BHSAPP.APPDATA.USER_DETAILS (USER_ID,NAME,SURNAME,PHONE,ADDRESS,TMSTMP) VALUES ({st.session_state.user},'{st.session_state.name}','{st.session_state.surname}','{st.session_state.phone}','{st.session_state.address}','{datetime.now()}')")
         st.write('Successfully captured your data!')
 
+
     
 
 def merch():
     st.title('Merchandise')
     st.write('Would you like to purchase some merchandise for the up and coming event?')
-    st.write('Please choose None if you dont want the specific merchandise.')
     sizes = ['None','XS','S','M','L','XL','XXL','XXL','XXXL','XXXXL']
     size_select = st.selectbox('Old School Rugby Jersey',sizes)
     soft_shell = st.selectbox('Soft Shell',sizes)
