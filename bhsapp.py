@@ -108,7 +108,7 @@ def events():
         st.selectbox('Ticket Type', inter_tickets)
     reunion = st.selectbox('10 Year Reunion Dinner', choices)
     if reunion:
-        st.selectbox('Is your partner attending?')
+        st.selectbox('Is your partner attending?',choices)
             
 
         
