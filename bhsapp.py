@@ -97,7 +97,7 @@ def merch():
 
 def choices():
     choices = ['No','Yes']
-    inter_tickets = ['Walk-in','Stand']
+    inter_tickets = ['Walk-in','Old Boys Stand']
     obj = {
         'member': None,
         'ticket': None,
@@ -142,39 +142,11 @@ def events():
 
         st.write('Successfully captured your data!')
 
-        
-        # choices()
-    
-
-    
-    # if len(st.session_state.event) != 0:
-    
-            
-
-        # if st.button('Done'):
-        #     if len(st.session_state.event) != 0:
-        #         for eve in events:
-        #             if eve == 'Friday Big Brag (Stadsaal)':
-        #                 run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{member}','{datetime.now()}')")
-        #             if eve == 'Interschools Rugby':
-        #                 run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION), TMSTP VALUES ({st.session_state.user},'Interschools Rugby','{ticket_type}','{datetime.now()}')")
-        #             if eve == '10 Year Reunion Dinner':
-        #                 run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION), TMSTP VALUES ({st.session_state.user},'10 Year Reunion Dinner','{reunion}','{datetime.now()}')")
-        #         st.write('Successfully captured your data!')
-
-
-
-        
-            
-
-        
-    
-
 def checkout():
-    st.session_state.ref_num = f'REF{ref_num_gen()}'
     st.title('Payment information')
     st.write('Please find the total for your selections below, along with the relevant payment information')
-    st.write(st.session_state)
+    total = run_query(f"SELECT * FROM BHSAPP.APPDATA.CHECKOUT WHERE USER_ID = {st.session_state.user}",2)
+    st.dataframe(total)
     
 
 # Set up the directory for pages in app
