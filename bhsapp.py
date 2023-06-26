@@ -116,16 +116,16 @@ def events():
             reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
             
 
-        if st.button('Done'):
-            if len(st.session_state.event) != 0:
-                for eve in events:
-                    if eve == 'Friday Big Brag (Stadsaal)':
-                        run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{member}','{datetime.now()}')")
-                    if eve == 'Interschools Rugby':
-                        run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION), TMSTP VALUES ({st.session_state.user},'Interschools Rugby','{ticket_type}','{datetime.now()}')")
-                    if eve == '10 Year Reunion Dinner':
-                        run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION), TMSTP VALUES ({st.session_state.user},'10 Year Reunion Dinner','{reunion}','{datetime.now()}')")
-                st.write('Successfully captured your data!')
+        # if st.button('Done'):
+        #     if len(st.session_state.event) != 0:
+        #         for eve in events:
+        #             if eve == 'Friday Big Brag (Stadsaal)':
+        #                 run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{member}','{datetime.now()}')")
+        #             if eve == 'Interschools Rugby':
+        #                 run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION), TMSTP VALUES ({st.session_state.user},'Interschools Rugby','{ticket_type}','{datetime.now()}')")
+        #             if eve == '10 Year Reunion Dinner':
+        #                 run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION), TMSTP VALUES ({st.session_state.user},'10 Year Reunion Dinner','{reunion}','{datetime.now()}')")
+        #         st.write('Successfully captured your data!')
 
 
 
