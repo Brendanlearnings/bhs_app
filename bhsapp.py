@@ -98,18 +98,35 @@ def merch():
 def events():
     st.title('Up and coming events')
 
-    choices = ['Yes','No']
+    choices = ['No','Yes']
     inter_tickets = ['Walk-in','Stand']
     events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
     if st.button('Submit'):
-        
+        st.session_state.event = events
         for i in events:
             if i == 'Friday Big Brag (Stadsaal)':
-                st.selectbox('Are you a paid up OBU Member?',choices)
+                member = st.selectbox('Are you a paid up OBU Member?',choices)
+                st.session_state.member = member
             if i == 'Interschools Rugby':
-                st.selectbox('Interschools Rugby ticket type', inter_tickets)
+                ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
+                st.session_state.ticket_type = ticket_type
             if i == '10 Year Reunion Dinner':
-                st.selectbox('Is your partner attending the reunion dinner?', choices)
+                reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
+                st.session_state.reunion = reunion
+
+        if st.button('Submit'):
+            if len(st.session_state.event) != 0:
+                for eve in events:
+                    if eve == 'Friday Big Brag (Stadsaal)':
+                        run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{st.session_state.member}','{datetime.now()}')")
+                    if eve == 'Interschools Rugby':
+                        run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION), TMSTP VALUES ({st.session_state.user},'Interschools Rugby','{st.session_state.ticket_type}','{datetime.now()}')")
+                    if eve == '10 Year Reunion Dinner':
+                        run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT, ADDITION), TMSTP VALUES ({st.session_state.user},'10 Year Reunion Dinner','{st.session_state.reunion}','{datetime.now()}')")
+                st.write('Successfully captured your data!')
+
+
+
         
             
 
