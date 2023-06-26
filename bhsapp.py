@@ -96,6 +96,8 @@ def merch():
         st.write('Successfully captured your data!')
 
 def choices():
+    st.title('Additional Requirements')
+    st.write('Please provide us with the following choices')
     choices = ['No','Yes']
     inter_tickets = ['Walk-in','Old Boys Stand']
     obj = {
@@ -148,7 +150,7 @@ def checkout():
     order = run_query(f"SELECT ITEM, PRICE FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
     st.dataframe(order)
     total = run_query(f"SELECT SUM(PRICE) FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'")
-    st.write(total)
+    st.write(f"Your total is: R{total}")
     
 
 # Set up the directory for pages in app
