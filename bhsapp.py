@@ -114,7 +114,7 @@ def events():
                 reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
                 st.session_state.reunion = reunion
 
-        if st.button('Submit'):
+        if st.button('Done'):
             if len(st.session_state.event) != 0:
                 for eve in events:
                     if eve == 'Friday Big Brag (Stadsaal)':
