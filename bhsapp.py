@@ -6,14 +6,19 @@ from datetime import date
 import snowflake.connector
 import random
 from datetime import datetime
+import base64
 #################################################
-
-
 
 def init_connection():
     return snowflake.connector.connect(
         **st.secrets["snowflake"], client_session_keep_alive=True
     )
+
+def display_pdf(file):
+    with open(file,'rb') as file:
+        pdf = base64.b64encode(file.read()).decode('utf-8')
+    return pdf
+
 
 def run_query(query,expectResult=1):
     conn = init_connection()
@@ -41,6 +46,7 @@ if 'user' not in st.session_state:
     now = datetime.now()
     st.session_state.timestamp = now.strftime('%Y-%m-%d %H:%M:%S.%f %z')
 
+
 def ref_num_gen():
     digits = [str(random.randint(0, 9)) for _ in range(5)]
     random.shuffle(digits)
@@ -49,11 +55,13 @@ def ref_num_gen():
 def details():
     st.title('Class of 2013 Reunion')
     st.write()
-    st.write('Calling all Matrix Class of 2013 graduates from Paarl Boys High!')
-    st.write("Get ready to embark on a thrilling journey down memory lane as we celebrate our monumental 10 year reunion. The anticipation is building, and the excitement is contagious! On the 5th of August 2023, our beloved school rugby field will transform into a pulsating hub of nostalgia and camaraderie.")
-    st.write("Picture yourself surrounded by familiar faces, reliving those glorious moments that shaped our youth. The air will be filled with thunderous cheers, the echoes of our triumphs, and the unbreakable bonds of friendship. This is your chance to reconnect with old teammates, share stories of triumphs and challenges, and reignite the spirit that once burned so bright within us. Let's come together and create an unforgettable experience, where the spirit of the Matrix Class of 2013 shines once again.")
-    st.write("Dust off your rugby jerseys, gather your memories, and prepare to be swept away by the electrifying energy that only a reunion of this magnitude can bring. The countdown has begun, and the stage is set. Brace yourselves for an extraordinary celebration, where we honor our legacy, relish our accomplishments, and create new memories that will last a lifetime. The Matrix Class of 2013 reunion is our moment to shine – let's make it legendary!")
-    components.html('''<iframe width="650" height="650" src="https://www.youtube.com/embed/1oeaRq9-yBc" title="Paarl Boys High School" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>''', height=650, width=650)
+    st.write('Dear Paarl Boys’ High Class of 2013,')
+    st.write("It's hard to believe that 10 years have passed since we walked the halls of Paarl Boys’ High, but here we are! It's time to gather together and celebrate a decade of memories, accomplishments, and friendships at our long-awaited 10-year reunion.")
+    st.write("We have planned various activities  to make this reunion truly special. Whether you were a sports star, a member of the debate team, a talented musician, or simply a student who enjoyed the camaraderie of our incredible class, there will be something for everyone.")
+    st.write("We are eagerly looking forward to seeing you and reconnecting with our class. Let's gather once again to celebrate the friendships and experiences that shaped our lives at Paarl Boys’ High. Together, let's make this reunion one to remember.")
+    pdf = display_pdf('HJS 10 Jaar Reunie Final.pdf')
+    components.html(f'<iframe src="data:application/pdf;base64,{pdf}" width="700" height="1000" type="application/pdf"></iframe>')
+    # components.html('''<iframe width="650" height="650" src="https://www.youtube.com/embed/1oeaRq9-yBc" title="Paarl Boys High School" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>''', height=650, width=650)
 
 
 def contact_deets():
@@ -74,17 +82,11 @@ def contact_deets():
 def merch():
     st.title('Merchandise')
     st.write('Would you like to purchase some merchandise for the up and coming event?')
-    sizes = ['XS','S','M','L','XL','XXL','XXL']
-    prices = {
-        'XS':250,
-        'S':266,
-        'M':270,
-        'L':300,
-        'XL':330,
-        'XXL':350,
-        'XXL':400
-    }
-    size_select = st.selectbox('Size',sizes)
+    st.write('Please choose None if you dont want the specific merchandise.')
+    sizes = ['None','XS','S','M','L','XL','XXL','XXL','XXXL','XXXXL']
+    size_select = st.selectbox('Old School Rugby Jersey',sizes)
+    soft_shell = st.selectbox('Soft Shell',sizes)
+    puffer_jack = st.selectbox('Puffer Jacket',sizes)
     if st.button('Submit'):
         st.session_state.size_select = size_select
         # run_query(f"INSERT INTO BHSAPP.APPDATA.USER_DETAILS (USER_ID,NAME,SURNAME,PHONE,ADDRESS,TMSTMP) VALUES ({st.session_state.user},'{st.session_state.name}','{st.session_state.surname}','{st.session_state.phone}','{st.session_state.address}','{datetime.now()}')")
