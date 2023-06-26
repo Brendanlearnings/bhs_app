@@ -150,7 +150,7 @@ def checkout():
     order = run_query(f"SELECT ITEM, PRICE FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
     st.dataframe(order)
     total = run_query(f"SELECT SUM(PRICE) FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'")
-    st.write(f"Your total is: R{total[0]}")
+    st.write(f"Your total is: R{total[0][0]}")
     
 
 # Set up the directory for pages in app
