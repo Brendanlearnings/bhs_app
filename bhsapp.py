@@ -119,7 +119,7 @@ def events():
         # st.write(type(st.session_state.event))
         
         st.session_state.event = events
-        choices()
+    choices()
     
 
     
