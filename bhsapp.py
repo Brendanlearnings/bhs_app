@@ -114,7 +114,7 @@ def events():
     events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
     if st.button('Submit'):
         st.session_state.event = events
-        switch_page('Additional')
+        switch_page(pages['Additional'])
         # choices()
     
 
@@ -162,6 +162,6 @@ pages = {
 
 # Create a menu with the page names
 selection = st.sidebar.radio("Navigate to:", list(pages.keys()))
-st.pages(pages)
+
 # Display the selected page with its corresponding function
 pages[selection]()
