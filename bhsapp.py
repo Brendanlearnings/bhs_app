@@ -120,13 +120,13 @@ def choices():
     if st.button('Submit'):
         if obj['member'] is not None:
             st.session_state.member = member
-            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID, DESC, TMSTP) VALUES ({st.session_state.user},'{st.session_state.member}','{datetime.now()}')")
+            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{st.session_state.member}','{datetime.now()}')")
         if obj['ticket'] is not None:
             st.session_state.ticket_type = ticket_type
-            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID, DESC, TMSTP) VALUES ({st.session_state.user},'{st.session_state.ticket_type}','{datetime.now()}')")
+            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP) VALUES ({st.session_state.user},'Interschools Rugby','{st.session_state.ticket_type}','{datetime.now()}')")
         if obj['reunion'] is not None:
             st.session_state.reunion = reunion
-            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID, DESC, TMSTP) VALUES ({st.session_state.user},'{st.session_state.reunion}','{datetime.now()}')")
+            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP) VALUES ({st.session_state.user},'10 Year Reunion Dinner','{st.session_state.reunion}','{datetime.now()}')")
         st.write('Successfully captured your data!')
         
         # run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT_, ADDITION, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{member}','{datetime.now()}')")
