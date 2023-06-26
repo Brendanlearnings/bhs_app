@@ -101,13 +101,13 @@ def events():
     choices = ['Yes','No']
     inter_tickets = ['Walk-in','Stand']
     brag = st.selectbox('Friday Big Brag (Stadsaal)', choices)
-    if brag:
+    if brag == 'Yes':
         st.selectbox('Are you a paid up OBU Member?',choices)
     inter = st.selectbox('Interschools Rugby', choices)
-    if inter:
+    if inter == 'Yes':
         st.selectbox('Ticket Type', inter_tickets)
     reunion = st.selectbox('10 Year Reunion Dinner', choices)
-    if reunion:
+    if reunion == 'Yes':
         st.selectbox('Is your partner attending?',choices)
             
 
