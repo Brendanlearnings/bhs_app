@@ -98,18 +98,24 @@ def merch():
 def choices():
     choices = ['No','Yes']
     inter_tickets = ['Walk-in','Stand']
-    for i in st.session_state.event:
-        if 'Friday Big Brag (Stadsaal)' in i:
-            member = st.selectbox('Are you a paid up OBU Member?',choices)
-        if 'Interschools Rugby' in i:
-            ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
-        if '10 Year Reunion Dinner' in i:
-            reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
+    if st.session_state.event is not None or len(st.session_state.event) != 0:
+        for i in st.session_state.event:
+            if 'Friday Big Brag (Stadsaal)' in i:
+                member = st.selectbox('Are you a paid up OBU Member?',choices)
+            if 'Interschools Rugby' in i:
+                ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
+            if '10 Year Reunion Dinner' in i:
+                reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
+    else:
+        st.write('No need for any additional questions, thank you!')
 
     if st.button('Submit'):
-        st.session_state.member = member
-        st.session_state.ticket_type = ticket_type
-        st.session_state.reunion = reunion
+        if member is not None:
+            st.session_state.member = member
+        if ticket_type is not None:
+            st.session_state.ticket_type = ticket_type
+        if reunion is not None:
+            st.session_state.reunion = reunion
         st.write(st.session_state)
         # run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT_, ADDITION, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{member}','{datetime.now()}')")
 
