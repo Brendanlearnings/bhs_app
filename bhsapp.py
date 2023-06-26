@@ -106,13 +106,13 @@ def events():
         st.write(st.session_state.event)
         st.write(type(st.session_state.event))
         st.session_state.event = events
-        if 'Friday Big Brag (Stadsaal)' in st.session_state.event:
+        if 'Friday Big Brag (Stadsaal)' in events:
             member = st.selectbox('Are you a paid up OBU Member?',choices)
             
-        if 'Interschools Rugby' in st.session_state.event:
+        if 'Interschools Rugby' in events:
             ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
             
-        if '10 Year Reunion Dinner' in st.session_state.event:
+        if '10 Year Reunion Dinner' in events:
             reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
             
 
