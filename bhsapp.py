@@ -61,7 +61,7 @@ def details():
     st.write("We are eagerly looking forward to seeing you and reconnecting with our class. Let's gather once again to celebrate the friendships and experiences that shaped our lives at Paarl Boys’ High. Together, let's make this reunion one to remember.")
     with open('HJS 10 Jaar Reunie Final.pdf','rb') as file:
         pdf = base64.b64encode(file.read()).decode('utf-8')
-    display_pdf = f'<iframe src="data:application/pdf;base64,{pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+    display_pdf = f'<iframe src="data:application/pdf;base64,{display_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
     st.markdown(display_pdf,unsafe_allow_html=True)
     # components.html('''<iframe width="650" height="650" src="https://www.youtube.com/embd/1oeaRq9-yBc" title="Paarl Boys High School" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>''', height=650, width=650)
 
