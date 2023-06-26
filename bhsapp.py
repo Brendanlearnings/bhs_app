@@ -101,7 +101,10 @@ def events():
     choices = ['No','Yes']
     inter_tickets = ['Walk-in','Stand']
     events = st.multiselect('What events would you like to attend?', ['Friday Big Brag (Stadsaal)','Interschools Rugby','10 Year Reunion Dinner'])
+    
     if st.button('Submit'):
+        st.write(st.session_state.event)
+        st.write(type(st.session_state.event))
         st.session_state.event = events
         if ('Friday Big Brag (Stadsaal)' in item for item in st.session_state.event) == True:
                 member = st.selectbox('Are you a paid up OBU Member?',choices)
