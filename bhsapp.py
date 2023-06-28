@@ -127,7 +127,7 @@ def choices():
     if st.button('Submit'):
         if obj['member'] is not None:
             st.session_state.member = member
-            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP, TICKET_AMOUNT) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{st.session_state.member}','{datetime.now()}, NULL')")
+            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP, TICKET_AMOUNT) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{st.session_state.member}','{datetime.now()}', NULL)")
         if obj['ticket'] is not None:
             st.session_state.ticket_type = ticket_type
             st.session_state.ticket_amount = ticket_amount
