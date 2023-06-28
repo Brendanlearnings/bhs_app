@@ -103,6 +103,7 @@ def choices():
     obj = {
         'member': None,
         'ticket': None,
+        'amount': None,
         'reunion': None
     }
     tick_amount = [1,2,3,4,5,6,7,8,9]
@@ -117,6 +118,7 @@ def choices():
                 ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
                 ticket_amount = st.selectbox('How many tickets do you require?',tick_amount)
                 obj['ticket'] = ticket_type
+                obj['amount'] = ticket_amount
             if '10 Year Reunion Dinner' in i:
                 reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
                 obj['reunion'] = reunion
@@ -125,13 +127,14 @@ def choices():
     if st.button('Submit'):
         if obj['member'] is not None:
             st.session_state.member = member
-            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{st.session_state.member}','{datetime.now()}')")
+            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP, TICKET_AMOUNT) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{st.session_state.member}','{datetime.now()}, NULL')")
         if obj['ticket'] is not None:
             st.session_state.ticket_type = ticket_type
-            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP) VALUES ({st.session_state.user},'Interschools Rugby','{st.session_state.ticket_type}','{datetime.now()}')")
+            st.session_state.ticket_amount = ticket_amount
+            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP, TICKET_AMOUNT) VALUES ({st.session_state.user},'Interschools Rugby','{st.session_state.ticket_type}','{datetime.now()}', {st.session_state.ticket_amount})")
         if obj['reunion'] is not None:
             st.session_state.reunion = reunion
-            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP) VALUES ({st.session_state.user},'10 Year Reunion Dinner','{st.session_state.reunion}','{datetime.now()}')")
+            run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS_INFO (USER_ID,EVENT, DESC, TMSTP, TICKET_AMOUNT) VALUES ({st.session_state.user},'10 Year Reunion Dinner','{st.session_state.reunion}','{datetime.now()}',NULL)")
         st.write('Successfully captured your data!')
         
         # run_query(f"INSERT INTO BHSAPP.APPDATA.EVENTS (USER_ID, EVENT_, ADDITION, TMSTP) VALUES ({st.session_state.user},'Friday Big Brag (Stadsaal)','{member}','{datetime.now()}')")
