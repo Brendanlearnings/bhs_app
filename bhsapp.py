@@ -105,19 +105,22 @@ def choices():
         'ticket': None,
         'reunion': None
     }
-    if st.session_state.event is not None or len(st.session_state.event) != 0:
+    tick_amount = [1,2,3,4,5,6,7,8,9]
+    if 'event' not in st.session_state:
+        st.write('No need for any additional questions, thank you!')
+    else:
         for i in st.session_state.event:
             if 'Friday Big Brag (Stadsaal)' in i:
                 member = st.selectbox('Are you a paid up OBU Member?',choices)
                 obj['member'] = member
             if 'Interschools Rugby' in i:
                 ticket_type = st.selectbox('Interschools Rugby ticket type', inter_tickets)
+                ticket_amount = st.selectbox('How many tickets do you require?',tick_amount)
                 obj['ticket'] = ticket_type
             if '10 Year Reunion Dinner' in i:
                 reunion = st.selectbox('Is your partner attending the reunion dinner?', choices)
                 obj['reunion'] = reunion
-    else:
-        st.write('No need for any additional questions, thank you!')
+        
 
     if st.button('Submit'):
         if obj['member'] is not None:
