@@ -152,17 +152,21 @@ def events():
 
 def checkout():
     st.title('Payment information')
-    st.write('Please find the summary for your selections below:')
-    order = run_query(f"SELECT ITEM, PRICE FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
-    st.dataframe(order)
-    total = run_query(f"SELECT SUM(PRICE) FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'")
-    st.subheader(f"Your total is: R{total[0][0]}")
-
-    st.write('Please see the below account details for payment, NB - use your name as the reference for the payment to help Warne out!')
-    st.write('Account Name: HJS OUDSTUDENTE UNIE')
-    st.write('Bank: ABSA, PAARL')
-    st.write('Account Number: 9350129123')
-    st.write('Ref: (Name and Surname)')
+    check_user = run_query(f'SELECT USER_ID FROM BHSAPP.APPDATA.USER_DETAILS WHERE USER_ID = {st.session_state.user}')
+    if check_user[0][0] == None or check_user[0][0] == 'NULL' or check_user[0][0] == 'null':
+        st.write('Woops something went wrong - please refresh the page and try again!')
+    else:
+        st.write('Please find the summary for your selections below:')
+        order = run_query(f"SELECT ITEM, PRICE FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'",2)
+        st.dataframe(order)
+        total = run_query(f"SELECT SUM(PRICE) FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'")
+        st.subheader(f"Your total is: R{total[0][0]}")
+    
+        st.write('Please see the below account details for payment, NB - use your name as the reference for the payment to help Warne out!')
+        st.write('Account Name: HJS OUDSTUDENTE UNIE')
+        st.write('Bank: ABSA, PAARL')
+        st.write('Account Number: 9350129123')
+        st.write('Ref: (Name and Surname)')
 
     
 
