@@ -153,7 +153,6 @@ def events():
 def checkout():
     st.title('Payment information')
     check_user = run_query(f'SELECT USER_ID FROM BHSAPP.APPDATA.USER_DETAILS WHERE USER_ID = {st.session_state.user}')
-    st.write(check_user)
     if check_user == [] or check_user == 'NULL' or check_user == 'null':
         st.write('Woops something went wrong - please refresh the page and try again!')
     else:
