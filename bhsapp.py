@@ -153,6 +153,7 @@ def events():
 def checkout():
     st.title('Payment information')
     check_user = run_query(f'SELECT USER_ID FROM BHSAPP.APPDATA.USER_DETAILS WHERE USER_ID = {st.session_state.user}')
+    st.write(check_user)
     if check_user[0][0] == None or check_user[0][0] == 'NULL' or check_user[0][0] == 'null':
         st.write('Woops something went wrong - please refresh the page and try again!')
     else:
@@ -161,7 +162,7 @@ def checkout():
         st.dataframe(order)
         total = run_query(f"SELECT SUM(PRICE) FROM BHSAPP.APPDATA.TOTAL WHERE USER_ID = '{st.session_state.user}'")
         st.subheader(f"Your total is: R{total[0][0]}")
-    
+
         st.write('Please see the below account details for payment, NB - use your name as the reference for the payment to help Warne out!')
         st.write('Account Name: HJS OUDSTUDENTE UNIE')
         st.write('Bank: ABSA, PAARL')
