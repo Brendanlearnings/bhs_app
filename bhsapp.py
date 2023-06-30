@@ -154,7 +154,7 @@ def checkout():
     st.title('Payment information')
     check_user = run_query(f'SELECT USER_ID FROM BHSAPP.APPDATA.USER_DETAILS WHERE USER_ID = {st.session_state.user}')
     st.write(check_user)
-    if check_user[0][0] == None or check_user[0][0] == 'NULL' or check_user[0][0] == 'null':
+    if check_user[0][0] == [] or check_user[0][0] == 'NULL' or check_user[0][0] == 'null':
         st.write('Woops something went wrong - please refresh the page and try again!')
     else:
         st.write('Please find the summary for your selections below:')
